@@ -94,6 +94,12 @@ const plans = [
   },
 ];
 
+const isMobile =
+  typeof window !== "undefined" && window.innerWidth <= 520;
+
+const isTablet =
+  typeof window !== "undefined" && window.innerWidth <= 768;
+
 function Logo() {
   return (
     <a href="#top" className="logo">
@@ -613,13 +619,13 @@ export default function Home() {
         <footer
           style={{
             width: "100%",
-            padding: "60px 30px 25px",
+            boxSizing: "border-box",
+            padding: isMobile ? "45px 18px 20px" : "60px 30px 25px",
             background: "#090d15",
             borderTop: "1px solid #242d3c",
             display: "flex",
             flexDirection: "column",
-            // alignItems: "center",
-            // justifyContent: "center",
+            alignItems: "center",
             textAlign: "center",
           }}
         >
@@ -630,15 +636,27 @@ export default function Home() {
               width: "100%",
               maxWidth: "1000px",
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              // alignItems: "center",
-              // justifyItems: "center",
-              gap: "60px",
+
+              // Desktop: 3 columns
+              // Mobile: 1 column
+              gridTemplateColumns: isMobile
+                ? "1fr"
+                : isTablet
+                  ? "repeat(2, 1fr)"
+                  : "repeat(3, 1fr)",
+
+              gap: isMobile
+                ? "35px"
+                : isTablet
+                  ? "40px 25px"
+                  : "60px",
+
               textAlign: "center",
+              margin: "0 auto",
             }}
           >
 
-            {/* BRAND */}
+            {/* ================= BRAND ================= */}
             <div
               className="footer-brand"
               style={{
@@ -647,31 +665,33 @@ export default function Home() {
                 alignItems: "center",
                 justifyContent: "center",
                 textAlign: "center",
+
+                // On tablet brand takes full row
+                gridColumn: isTablet && !isMobile ? "1 / -1" : "auto",
               }}
             >
-
               <div
                 className="logo"
                 style={{
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  gap: "10px",
+                  gap: isMobile ? "8px" : "10px",
                 }}
               >
-
                 <span
                   className="logo-mark"
                   style={{
-                    width: "40px",
-                    height: "40px",
+                    width: isMobile ? "36px" : "40px",
+                    height: isMobile ? "36px" : "40px",
+                    minWidth: isMobile ? "36px" : "40px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     borderRadius: "12px",
                     background: "#ffbd3d",
                     color: "#11151d",
-                    fontSize: "19px",
+                    fontSize: isMobile ? "17px" : "19px",
                     fontWeight: "800",
                   }}
                 >
@@ -684,7 +704,7 @@ export default function Home() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
-                    fontSize: "18px",
+                    fontSize: isMobile ? "17px" : "18px",
                     fontWeight: "800",
                     color: "#f5f5f5",
                     lineHeight: "1.1",
@@ -696,23 +716,23 @@ export default function Home() {
                     style={{
                       marginTop: "3px",
                       color: "#ffbd3d",
-                      fontSize: "7px",
-                      letterSpacing: "1.8px",
+                      fontSize: isMobile ? "6px" : "7px",
+                      letterSpacing: isMobile ? "1.4px" : "1.8px",
                       fontWeight: "800",
                     }}
                   >
                     CAREER GUIDANCE
                   </span>
                 </span>
-
               </div>
 
               <p
                 style={{
-                  maxWidth: "330px",
+                  width: "100%",
+                  maxWidth: isMobile ? "310px" : "330px",
                   margin: "20px auto 0",
                   color: "#9298a1",
-                  fontSize: "13px",
+                  fontSize: isMobile ? "12px" : "13px",
                   lineHeight: "1.7",
                   textAlign: "center",
                 }}
@@ -721,11 +741,10 @@ export default function Home() {
                 LinkedIn optimisation and end-to-end career guidance —
                 built with warmth, delivered with precision.
               </p>
-
             </div>
 
 
-            {/* COMPANY */}
+            {/* ================= COMPANY ================= */}
             <div
               className="footer-col"
               style={{
@@ -733,11 +752,11 @@ export default function Home() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "13px",
+                gap: isMobile ? "11px" : "13px",
                 textAlign: "center",
+                width: "100%",
               }}
             >
-
               <div
                 className="mini-label"
                 style={{
@@ -783,11 +802,10 @@ export default function Home() {
               >
                 Contact
               </a>
-
             </div>
 
 
-            {/* REACH US */}
+            {/* ================= REACH US ================= */}
             <div
               className="footer-col"
               style={{
@@ -795,11 +813,11 @@ export default function Home() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "13px",
+                gap: isMobile ? "11px" : "13px",
                 textAlign: "center",
+                width: "100%",
               }}
             >
-
               <div
                 className="mini-label"
                 style={{
@@ -821,12 +839,14 @@ export default function Home() {
                   justifyContent: "center",
                   gap: "8px",
                   color: "#aeb2ba",
-                  fontSize: "13px",
+                  fontSize: isMobile ? "12px" : "13px",
                   textDecoration: "none",
+                  maxWidth: "100%",
+                  wordBreak: "break-word",
                 }}
               >
                 <Mail size={14} />
-                talexeteam@gmail.com
+                <span>talexeteam@gmail.com</span>
               </a>
 
               <a
@@ -837,12 +857,12 @@ export default function Home() {
                   justifyContent: "center",
                   gap: "8px",
                   color: "#aeb2ba",
-                  fontSize: "13px",
+                  fontSize: isMobile ? "12px" : "13px",
                   textDecoration: "none",
                 }}
               >
                 <Phone size={14} />
-                +91 85308 09768
+                <span>+91 85308 09768</span>
               </a>
 
               <span
@@ -852,26 +872,24 @@ export default function Home() {
                   justifyContent: "center",
                   gap: "8px",
                   color: "#aeb2ba",
-                  fontSize: "13px",
+                  fontSize: isMobile ? "12px" : "13px",
                 }}
               >
                 <MapPin size={14} />
-                India
+                <span>India</span>
               </span>
-
             </div>
-
           </div>
 
 
-          {/* FOOTER BOTTOM */}
+          {/* ================= FOOTER BOTTOM ================= */}
           <div
             className="footer-bottom"
             style={{
               width: "100%",
               maxWidth: "1000px",
-              marginTop: "45px",
-              paddingTop: "22px",
+              marginTop: isMobile ? "35px" : "45px",
+              paddingTop: isMobile ? "18px" : "22px",
               borderTop: "1px solid #242d3c",
 
               display: "flex",
@@ -879,21 +897,21 @@ export default function Home() {
               alignItems: "center",
               justifyContent: "center",
 
-              gap: "15px",
+              gap: isMobile ? "12px" : "15px",
 
               textAlign: "center",
+              marginLeft: "auto",
+              marginRight: "auto",
             }}
           >
-
             <span
               style={{
                 color: "#6f7580",
-                fontSize: "11px",
+                fontSize: isMobile ? "10px" : "11px",
               }}
             >
               © 2026 Talexe.in — All rights reserved.
             </span>
-
 
             <div
               className="footer-legal"
@@ -901,15 +919,20 @@ export default function Home() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                gap: "25px",
+
+                // Allows wrapping on very small screens
+                flexWrap: "wrap",
+
+                gap: isMobile ? "12px 20px" : "25px",
+
+                textAlign: "center",
               }}
             >
-
               <a
                 href="#"
                 style={{
                   color: "#777e88",
-                  fontSize: "11px",
+                  fontSize: isMobile ? "10px" : "11px",
                   textDecoration: "none",
                 }}
               >
@@ -920,7 +943,7 @@ export default function Home() {
                 href="#"
                 style={{
                   color: "#777e88",
-                  fontSize: "11px",
+                  fontSize: isMobile ? "10px" : "11px",
                   textDecoration: "none",
                 }}
               >
@@ -931,17 +954,14 @@ export default function Home() {
                 href="#"
                 style={{
                   color: "#777e88",
-                  fontSize: "11px",
+                  fontSize: isMobile ? "10px" : "11px",
                   textDecoration: "none",
                 }}
               >
                 Refund Policy
               </a>
-
             </div>
-
           </div>
-
         </footer>
 
       </main>
