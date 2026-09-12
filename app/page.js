@@ -64,36 +64,49 @@ const services = [
 
 const plans = [
   {
-    name: "Starter",
-    price: "₹499",
-    note: "For a focused career reset",
-    features: ["Resume review", "One strategy session", "Action checklist"],
+    badge: "1 MONTH",
+    name: "1 Month",
+    price: "₹99",
+    duration: "/ 30 days",
+    note: "Billed once. No auto-renewal.",
+    features: [
+      "Resume review & rewrite (1)",
+      "Career consultation (30 min)",
+      "LinkedIn quick audit",
+      "Email support",
+    ],
   },
   {
-    name: "Pro",
-    price: "₹999",
-    note: "For serious job seekers",
+    badge: "6 MONTHS",
+    name: "6 Months",
+    price: "₹499",
+    duration: "/ 180 days",
+    note: "Billed once. No auto-renewal.",
     features: [
-      "Resume rewrite",
+      "Unlimited resume revisions",
+      "3 career consultations",
       "LinkedIn optimization",
-      "Interview drills",
-      "Career roadmap",
+      "Interview prep session",
+      "Priority email support",
+    ],
+  },
+  {
+    badge: "1 YEAR",
+    name: "1 Year",
+    price: "₹999",
+    duration: "/ 365 days",
+    note: "Billed once. No auto-renewal.",
+    features: [
+      "Everything in 6 months",
+      "Unlimited consultations",
+      "Personal HR advisor",
+      "Job-hunt strategy plan",
+      "Mock interviews (unlimited)",
+      "24x7 chat support",
     ],
     featured: true,
   },
-  {
-    name: "Partner",
-    price: "₹1,999",
-    note: "For high-touch guidance",
-    features: [
-      "Everything in Pro",
-      "1:1 HR guidance",
-      "Negotiation support",
-      "Priority response",
-    ],
-  },
 ];
-
 const isMobile =
   typeof window !== "undefined" && window.innerWidth <= 520;
 
