@@ -146,6 +146,19 @@ export default function Home() {
     };
   }
 
+   function getPlanWaLink(plan) {
+    const lines = [
+      "New plan inquiry from Talexe website",
+      `Plan: ${plan.name} (${plan.price}/month)`,
+      `About: ${plan.note}`,
+      `Includes: ${plan.features.join(", ")}`,
+    ];
+ 
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      lines.join("\n")
+    )}`;
+  }
+
   function handleSendInquiry(e) {
     e.preventDefault();
 
@@ -280,7 +293,7 @@ export default function Home() {
             <div className="hero-image-container">
 
               <img
-                src="/hero-career.jpg"
+                src="/photo1"
                 alt="Personal HR career guidance"
               />
 
@@ -466,7 +479,65 @@ export default function Home() {
 
           </div>
 
-
+                <div className="pricing-grid">
+ 
+            {plans.map((plan) => (
+ 
+              <article
+                className={`price-card ${
+                  plan.featured ? "featured" : ""
+                }`}
+                key={plan.name}
+              >
+ 
+                {plan.featured && (
+                  <div className="popular">
+                    MOST POPULAR
+                  </div>
+                )}
+ 
+                <h3>{plan.name}</h3>
+ 
+                <div className="price">
+                  {plan.price}
+                  <span>/month</span>
+                </div>
+ 
+                <p>{plan.note}</p>
+ 
+                <div className="divider"></div>
+ 
+                {plan.features.map((f) => (
+ 
+                  <div
+                    className="feature"
+                    key={f}
+                  >
+                    <Check size={16} />
+                    {f}
+                  </div>
+ 
+                ))}
+ 
+                <a
+                  href={getPlanWaLink(plan)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={
+                    plan.featured
+                      ? "primary-btn full"
+                      : "secondary-btn full"
+                  }
+                >
+                  Get started
+                  <ArrowRight size={17} />
+                </a>
+ 
+              </article>
+ 
+            ))}
+ 
+          </div>
 
         </section>
 
